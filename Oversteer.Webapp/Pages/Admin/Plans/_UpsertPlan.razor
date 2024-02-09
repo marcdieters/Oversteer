@@ -1,0 +1,147 @@
+﻿@using Oversteer.Models
+
+@if (ShowLoader)
+{
+    <div class="loader"></div>
+}
+
+@if (ShowDialog)
+{
+    <div class="modal fade show d-block" tabindex="0" role="dialog" style="z-index:11">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        @if (string.IsNullOrEmpty(Plan.Name))
+                        {
+                            <text>Add new plan</text>
+                        }
+                        else
+                        {
+                            <text>Edit @Plan.Name</text>
+                        }
+                    </h5>
+
+                    <button type="button" class="close" @onclick="@Close" data-dimdiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <EditForm Model="@Plan" OnValidSubmit="@HandleValidSubmit">
+
+                        <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+                        <div class="form-group row">
+                            <label class="col-form-label">Name</label>
+                            <InputText id="comment" class="form-control" @bind-Value="@Plan.Name" placeholder="Enter a name"></InputText>
+                            <ValidationMessage For="@(() => Plan.Name)" />
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label">Description</label>
+                            <InputText id="comment" class="form-control" @bind-Value="@Plan.Description" placeholder="Enter a flag name"></InputText>
+                            <ValidationMessage For="@(() => Plan.Description)" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label">Select features</label>
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Category</th>
+                                        <th>Feature</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var feature in Plan.Features)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <input type="radio" value="@feature.FieldSelector" onchange="@OnSelect" />
+                                            </td>
+                                            <td>
+                                                <InputSelect class="form-select" @bind-Value="@feature.CategoryId" @oninput="@CategoryAddOrEdit">
+                                                    <option value="0" selected>--select--</option>
+                                                    @foreach (var category in PlanCategories)
+                                                    {
+                                                        <option value="@category.Id">@category.Name</option>
+                                                    }
+                                                </InputSelect>
+                                            </td>
+                                            <td>
+                                                <InputSelect class="form-select" @bind-Value="@feature.FeatureId" @oninput="@FeatureAddOrEdit">
+                                                    <option value="0" selected>--select--</option>
+                                                    @foreach (var feature in Features)
+                                                    {
+                                                        <option value="@feature.Id">@feature.Name</option>
+                                                    }
+                                                </InputSelect>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <button @onclick="() => AddRow()" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+                            <button @onclick="() => RemoveRow()" class="btn btn-primary"><i class="fa-solid fa-minus"></i></button>
+                            <button type="button" class="btn btn-primary" @onclick="@AddCategory">@CategoryButtonText</button>
+                            <_UpsertCategory @ref="_UpsertCategory" CloseEventCallback="@UpsertCategoryDialog_OnDialogClose"></_UpsertCategory>
+                            <button type="button" class="btn btn-primary" @onclick="@AddFeature">@FeatureButtonText</button>
+                            <_UpsertFeature @ref="_UpsertFeature" CloseEventCallback="@UpsertFeatureDialog_OnDialogClose"></_UpsertFeature>
+                        </div>
+
+                        <DataAnnotationsValidator />
+                        <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a class="btn btn-outline-primary" @onclick="@Close">Close</a>
+
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    void OnSelect(ChangeEventArgs e)
+    {
+        string selectedString = e.Value.ToString();
+        SelectedFeatureInPlan = Convert.ToInt32(selectedString);
+    }
+
+    void CategoryAddOrEdit(ChangeEventArgs e)
+    {
+        //string selectedString = e.Value.ToString();
+        //int selValue = Convert.ToInt32(selectedString);
+
+        //if (selValue == 0)
+        //{
+        //    CategoryButtonText = "Add Category";
+        //    SelPlanCategory = new PlanCategory();
+        //}
+        //else
+        //{
+        //    CategoryButtonText = "Edit Category";
+        //    SelPlanCategory = PlanCategories.First(p => p.Id == selValue);
+        //}
+    }
+
+    void FeatureAddOrEdit(ChangeEventArgs e)
+    {
+        //string selectedString = e.Value.ToString();
+        //int selValue = Convert.ToInt32(selectedString);
+
+        //if (selValue == 0)
+        //{
+        //    FeatureButtonText = "Add Feature";
+        //    SelFeature = new Feature();
+        //}
+        //else
+        //{
+        //    FeatureButtonText = "Edit Feature";
+        //    SelFeature = Features.First(f => f.Id == selValue);
+        //}
+    }
+}

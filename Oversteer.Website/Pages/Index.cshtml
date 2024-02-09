@@ -1,0 +1,526 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+            <!-- Slide 1 -->
+            <div class="carousel-item active" style="background-image: url(/img/slide/slide-1.png)">
+                <div class="carousel-container">
+                    <div class="container">
+                        <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Oversteer</span></h2>
+                        <p class="animate__animated animate__fadeInUp">The most complete Simrace Platform you'll ever find. Whether you're driver, a team manager or a league owner, Simracemanager is all you need to make your simracing experience a success'</p>
+                        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item" style="background-image: url(/img/slide/slide-2.png)">
+                <div class="carousel-container">
+                    <div class="container">
+                        <h2 class="animate__animated animate__fadeInDown">Key Features</h2>
+                        <ul class="animate__animated animate__fadeInUp" style="list-style-type: none">
+                            <li style="color:white"><i class="bi bi-check-circled"></i> Fully automated platform.</li>
+                            <li style="color:white"><i class="bi bi-check-circled"></i> Easy driver registrations.</li>
+                            <li style="color:white"><i class="bi bi-check-circled"></i> Support for single driver races as well as team races.</li>
+                            <li style="color:white"><i class="bi bi-check-circled"></i> Support for seperate qualifying sessions.</li>
+                            <li style="color:white"><i class="bi bi-check-circled"></i> Support for driver categories.</li>
+                            <li style="color:white"><i class="bi bi-check-circled"></i> And so much more.</li>
+                        </ul>
+                        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-item" style="background-image: url(/img/slide/slide-3.png)">
+                <div class="carousel-container">
+                    <div class="container">
+                        <h2 class="animate__animated animate__fadeInDown">Hosted Race servers or host your own</h2>
+                        <p class="animate__animated animate__fadeInUp">You have to option to have us run your Race servers but if you have your own server, you can host the Race servers yourself.</p>
+                        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+    </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+    <!-- ======= Featured Services Section ======= -->
+    <section id="featured-services" class="featured-services section-bg">
+        <div class="container">
+
+            <div class="row no-gutters">
+                <div class="col-lg-4 col-md-6">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bi bi-laptop"></i></div>
+                        <h4 class="title"><a href="">Fast infrastructure</a></h4>
+                        <p class="description">Your website and race servers will be hosted on a fast, reliable infrastructure.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bi bi-briefcase"></i></div>
+                        <h4 class="title"><a href="">You have your own website</a></h4>
+                        <p class="description">Your league will have it's own internet presence. You can use your own domain name if your prefer. The website can also be customized according to your needs</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bi bi-calendar4-week"></i></div>
+                        <h4 class="title"><a href="">Create your own races</a></h4>
+                        <p class="description">Create your own championships / races. The system will do all the work for you.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Featured Services Section -->
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Feature Overview</h2>
+                <p>Here you find all the features and plans available on Oversteer</p>
+            </div>
+
+            <div class="row">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Starter</th>
+                            <th>Bronze</th>
+                            <th>Silver</th>
+                            <th>Gold</th>
+                            <th>Platinum</th>
+                            <th>Enterprise</th>
+                            <th>Trial</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6"><h3>Event Management</h3></td>
+                        </tr>
+                        <tr>
+                            <td>Create championships</td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Create races</td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Create race servers</td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Single driver races support</td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Team races support</td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Seperate qualifying sessions support</td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Use track location weather reports for weather settings</td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Championship dependency support</td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Number of concurrent hosted race servers</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>5</td>
+                            <td>10</td>
+                            <td><i class="bi bi-unlock"></i></td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td colspan="6"><h3> </h3></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6"><h3>Integration</h3></td>
+                        </tr>
+                        <tr>
+                            <td>Steam integration</td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Discord integration</td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6"><h3> </h3></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6"><h3>Content Management</h3></td>
+                        </tr>
+                        <tr>
+                            <td>Allow uploading of custom liveries</td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Allow autosync of custom liveries</td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Allow auto installation of mods</td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-check"></i></td>
+                            <td><i class="bi bi-x"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section><!-- End About Us Section -->
+    <!-- ======= Why Us Section ======= -->
+    <!-- ======= Our Clients Section ======= -->
+    <section id="clients" class="clients">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Our Clients</h2>
+                <p>The following leagues are already using Simracemanager. Visit their websites to see Simracemanager in action</p>
+            </div>
+
+            <div class="clients-slider swiper">
+                <div class="swiper-wrapper align-items-center">
+
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+        </div>
+    </section><!-- End Our Clients Section -->
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-9 text-center text-lg-start">
+                    <h3>Get Started now</h3>
+                    <p> You can setup a 14-day trial right now. If you decide Simracemanager is for you, the trail can be changed to a premanent plan</p>
+                </div>
+                <div class="col-lg-3 cta-btn-container text-center">
+                    <a class="cta-btn align-middle" href="#">Request a trial</a>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Cta Section -->
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Portfolio</h2>
+                <p>We support Assetto Corsa and Assetto Corsa Compitizione.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <ul id="portfolio-flters">
+                        <li data-filter="*" class="filter-active">All</li>
+                        <li data-filter=".filter-ac">Assetto Corsa</li>
+                        <li data-filter=".filter-acc">Assetto Corsa Compitizione</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row portfolio-container">
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-acc">
+                    <div class="portfolio-wrap">
+                        <img src="/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Assetto Corsa Compitizione</h4>
+                            <div class="portfolio-links">
+                                <a href="/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-acc">
+                    <div class="portfolio-wrap">
+                        <img src="/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Assetto Corsa Compitizione</h4>
+                            <div class="portfolio-links">
+                                <a href="/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
+                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-ac">
+                    <div class="portfolio-wrap">
+                        <img src="/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Assetto Corsa</h4>
+                            <div class="portfolio-links">
+                                <a href="/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
+                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-acc">
+                    <div class="portfolio-wrap">
+                        <img src="/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Assetto Corsa Compitizione</h4>
+                            <div class="portfolio-links">
+                                <a href="/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
+                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-acc">
+                    <div class="portfolio-wrap">
+                        <img src="/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Assetto Corsa Compitizione</h4>
+                            <div class="portfolio-links">
+                                <a href="/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
+                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-acc">
+                    <div class="portfolio-wrap">
+                        <img src="/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Assetto Corsa Compitizione</h4>
+                            <div class="portfolio-links">
+                                <a href="/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
+                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-acc">
+                    <div class="portfolio-wrap">
+                        <img src="/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Assetto Corsa Compitizione</h4>
+                            <div class="portfolio-links">
+                                <a href="/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
+                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-ac">
+                    <div class="portfolio-wrap">
+                        <img src="/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Assetto Corsa</h4>
+                            <div class="portfolio-links">
+                                <a href="/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
+                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-acc">
+                    <div class="portfolio-wrap">
+                        <img src="/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Assetto Corsa Compitizione</h4>
+                            <div class="portfolio-links">
+                                <a href="/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
+                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Portfolio Section -->
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Contact</h2>
+                <p>Have a question, comment, remark, anything. Enter your query here</p>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-5 d-flex align-items-stretch">
+                    <div class="info">
+
+                        <div class="email">
+                            <i class="bi bi-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>info@simracemanager.com</p>
+                        </div>
+
+                        <div class="discord">
+                            <i class="bi bi-phone"></i>
+                            <h4>Discord:</h4>
+                            <p>Discord URL here</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="name">Your Name</label>
+                                <input type="text" name="name" class="form-control" id="name" required>
+                            </div>
+                            <div class="form-group col-md-6 mt-3 mt-md-0">
+                                <label for="name">Your Email</label>
+                                <input type="email" class="form-control" name="email" id="email" required>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="name">Subject</label>
+                            <input type="text" class="form-control" name="subject" id="subject" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="name">Message</label>
+                            <textarea class="form-control" name="message" rows="10" required></textarea>
+                        </div>
+                        <div class="my-3">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                        </div>
+                        <div class="text-center"><button type="submit">Send Message</button></div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Contact Section -->
+
+</main><!-- End #main -->

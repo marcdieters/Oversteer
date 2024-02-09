@@ -1,0 +1,78 @@
+﻿@attribute [Authorize]
+
+@if (ShowLoader)
+{
+    <div class="loader"></div>
+}
+
+@if (ShowDialog)
+{
+    <div class="modal fade show d-block" tabindex="0" role="dialog" style="z-index:11">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        @if (string.IsNullOrEmpty(League.Name))
+                        {
+                            <text>Register your league</text>
+                        }
+                        else
+                        {
+                            <text>Edit your league registration</text>
+                        }
+                    </h5>
+                    <button type="button" class="close" @onclick="@Close" data-dimdiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">It is mandatory that you join our Discord server. That way we can easily get in touch with you to finish you registration</div>
+                    </div>
+
+                    <form role="form">
+                        <EditForm Model="League" OnValidSubmit="@HandleValidSubmit">
+
+                            <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+                            <div class="form-group">
+                                <label class="col-form-label">Name</label>
+                                <InputText class="form-control" @bind-Value="@League.Name" placeholder="Enter a name"></InputText>
+                                <ValidationMessage For="@(() => League.Name)" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label">Description</label>
+                                <InputText class="form-control" @bind-Value="@League.Description" placeholder="Enter a description"></InputText>
+                                <ValidationMessage For="@(() => League.Description)" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label">If your league a website, please fill in the URL here</label>
+                                <InputText class="form-control" @bind-Value="@League.URL" placeholder="Enter an url"></InputText>
+                                <ValidationMessage For="@(() => League.URL)" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label">Select the plan you want</label>
+                                <InputSelect class="form-select" @bind-Value="@League.PlanId">
+                                    <option value="0" selected>--select--</option>
+                                    <option value="1">Free</option>
+                                    <option value="2">Standard</option>
+                                    <option value="3">Pro</option>
+                                </InputSelect>
+                                <ValidationMessage For="@(() => League.PlanId)" />
+                            </div>
+
+                            <DataAnnotationsValidator />
+
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <a class="btn btn-outline-primary" @onclick="@Close">Close</a>
+
+                        </EditForm>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    }

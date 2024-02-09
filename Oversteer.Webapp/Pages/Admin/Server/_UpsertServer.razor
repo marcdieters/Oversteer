@@ -1,0 +1,9 @@
+﻿@page "/upsertserver"
+@using Oversteer.Models
+
+
+<Oversteer.BlazorComponents.Server.Upsert 
+    Token="@Token"
+    @bind-ServerId="@ServerId"
+    @bind-ServerId:after="@ServerSaved" >
+</Oversteer.BlazorComponents.Server.Upsert>

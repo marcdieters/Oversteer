@@ -1,0 +1,97 @@
+﻿@using Oversteer.Models
+
+@if (ShowLoader)
+{
+    <div class="loader"></div>
+}
+
+@if (ShowDialog)
+{
+    <div class="modal fade show d-block" tabindex="0" role="dialog" style="z-index:11">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        @if (string.IsNullOrEmpty(Host.Name))
+                        {
+                            <text>Add new car class</text>
+                        }
+                        else
+                        {
+                            <text>Edit @Host.Name</text>
+                        }
+                    </h5>
+                    <button type="button" class="close" @onclick="@Close" data-dimdiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <EditForm Model="@Host" OnValidSubmit="@HandleValidSubmit">
+
+                        <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+                        <div class="form-group row">
+                            <label class="col-form-label">Name</label>
+                            <InputText id="comment" class="form-control" @bind-Value="@Host.Name" placeholder="Enter a name"></InputText>
+                            <ValidationMessage For="@(() => Host.Name)" />
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label">Firendly name</label>
+                            <InputText id="comment" class="form-control" @bind-Value="@Host.FriendlyName" placeholder="Enter a name"></InputText>
+                            <ValidationMessage For="@(() => Host.FriendlyName)" />
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label">Country</label>
+                            <InputSelect class="form-select" @bind-Value="@Host.CountryId">
+                                <option value="00000000-0000-0000-0000-000000000000" selected>--select--</option>
+                                @foreach (var country in Countries)
+                                {
+                                    <option value="@country.Id">@country.Name</option>
+                                }
+                            </InputSelect>
+                            <ValidationMessage For="@(() => Host.CountryId)" />
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label">TCP port range</label>
+                            <div class="col-6">
+                                <InputNumber class="form-select" @bind-Value="@Host.TcpStartPort"></InputNumber>
+                            </div>
+                            <div class="col-6">
+                                <InputNumber class="form-select" @bind-Value="@Host.TcpEndPort"></InputNumber>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label">UDP port range</label>
+                            <div class="col-6">
+                                <InputNumber class="form-select" @bind-Value="@Host.UdpStartPort"></InputNumber>
+                            </div>
+                            <div class="col-6">
+                                <InputNumber class="form-select" @bind-Value="@Host.UdpEndPort"></InputNumber>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label">HTTP port range (only needed for Assetto Corsa)</label>
+                            <div class="col-6">
+                                <InputNumber class="form-select" @bind-Value="@Host.HttpStartPort"></InputNumber>
+                            </div>
+                            <div class="col-6">
+                                <InputNumber class="form-select" @bind-Value="@Host.HttpEndPort"></InputNumber>
+                            </div>
+                        </div>
+
+                        <DataAnnotationsValidator />
+
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a class="btn btn-outline-primary" @onclick="@Close">Close</a>
+
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}

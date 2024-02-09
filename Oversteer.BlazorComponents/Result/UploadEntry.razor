@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using Oversteer.Models.Racing
+@using Oversteer.Extensions
+@using Oversteer.Enums
+
+<div class="row">
+    <div class="col-6">
+        <label class="col-form-label">Session type</label>
+        <InputSelect class="form-select" @bind-Value="ResultDto.SessionType">
+            @foreach (SessionType sessionType in Enum.GetValues(typeof(SessionType)))
+            {
+                <option value="@sessionType">@sessionType.GetDisplayName()</option>
+            }
+        </InputSelect>
+    </div>
+
+    <div class="col-6">
+        <label class="col-form-label">Image</label>
+        <InputFile class="form-control" @key=@(InputFileId) OnChange="@LoadFiles" />
+    </div>
+
+</div>

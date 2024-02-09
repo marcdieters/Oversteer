@@ -1,0 +1,93 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+
+<fieldset class="group-border">
+    <legend class="group-border">
+        Details
+    </legend>
+
+    <div class="form-group row">
+        <label class="col-form-label">Name</label>
+        <InputText id="comment" class="form-control" @bind-Value="@Server.Name" placeholder="Enter a name"></InputText>
+        <ValidationMessage For="@(() => Server.Name)" />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Password</label>
+        <InputText id="comment" class="form-control" @bind-Value="@Server.Password" placeholder="Enter a password"></InputText>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Admin password</label>
+        <InputText id="comment" class="form-control" @bind-Value="@Server.AdminPassword" placeholder="Enter an admin password"></InputText>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Car class</label>
+        <InputSelect class="form-select" @bind-Value="Server.CarClassId">
+            <option value="00000000-0000-0000-0000-000000000000">Please select a class</option>
+            @foreach (var carClass in CarClasses)
+            {
+                <option value="@carClass.Id">@carClass.Name</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => Server.CarClassId)" />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Host</label>
+        <InputSelect class="form-select" @bind-Value="Server.HostId">
+            <option value="00000000-0000-0000-0000-000000000000">Please select a host</option>
+            @foreach (var host in Hosts)
+            {
+                <option value="@host.Id" disabled="@host.Disabled">
+                    @host.Name
+                    @if (host.Disabled)
+                    {
+                        <text> (not configured properly)</text>
+                    }
+                </option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => Server.HostId)" />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Race sim</label>
+        <InputSelect class="form-select" @bind-Value="SelectedRaceSimId" @bind-Value:after="RaceSimSelected">
+            <option value="">Please select a race sim</option>
+            @foreach (var sim in RaceSims)
+            {
+                <option value="@sim.Id">@sim.Name</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => Server.RaceSimId)" />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Track</label>
+        <InputSelect class="form-select" @bind-Value="Server.TrackId" @bind-Value:after="@TrackSelected">
+            <option value="00000000-0000-0000-0000-000000000000" selected>Please select a track</option>
+            @foreach (var track in Tracks)
+            {
+                <option value="@track.Id">@track.Name</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => Server.TrackId)" />
+    </div>
+
+    @if (Server.RaceSim != null && Server.RaceSim.DoesSimSupportTrackLayouts)
+    {
+        <div class="form-group row">
+            <label class="col-form-label">Track layout</label>
+            <InputSelect class="form-select" @bind-Value="Server.TrackLayoutId">
+                <option value="00000000-0000-0000-0000-000000000000" selected>Please select a track layout</option>
+                @foreach (var trackLayout in TrackLayouts)
+                {
+                    <option value="@trackLayout.Id">@trackLayout.Name</option>
+                }
+            </InputSelect>
+                <ValidationMessage For="@(() => Server.TrackLayoutId)" />
+        </div>
+    }
+
+</fieldset>

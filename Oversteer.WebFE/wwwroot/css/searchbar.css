@@ -1,0 +1,42 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+/* Style the search field */
+form.searchBar input[type=text] {
+    padding: 5px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+    margin-top: -5px;
+    border-radius: .25rem;
+   
+}
+
+/* Style the submit button */
+form.searchBar button {
+    float: left;
+    width: 19%;
+    padding: 5px;
+    background: #000000;
+    color: white;
+    font-size: 17px;
+    border: 1px solid white;
+    cursor: pointer;
+    border-radius: .25rem;
+    margin-top: -5px;
+}
+
+    form.searchBar button:hover {
+        color: black;
+        background: #f8f9fa;
+    }
+
+/* Clear floats */
+    form .searchBar::after {
+    content: "";
+    clear: both;
+    display: table;
+}

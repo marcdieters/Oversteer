@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="row clearfix">
+            <div class="col-sm-10">
+                <h4>
+                    @if (Server.Name == string.Empty)
+                    {
+                        <text>Add new server</text>
+                    }
+                    else
+                    {
+                        <text>Edit server @Server.Name</text>
+                    }
+                </h4>
+            </div>
+            <div class="col-sm-2">
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a href="#generic" class="nav-link active" data-bs-toggle="tab">Generic</a>
+            </li>
+            <li class="nav-item">
+                <a href="#sessions" class="nav-link" data-bs-toggle="tab">Sessions</a>
+            </li>
+            <li class="nav-item">
+                <a href="#acc" class="nav-link" data-bs-toggle="tab" hidden="@HideAccTab">Assetto Corsa Compitizione</a>
+            </li>
+
+        </ul>
+
+        <EditForm Model="@Server" OnValidSubmit="HandleValidSubmit">
+
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="generic">
+                    <Generic RaceSims="@RaceSims" Token="@Token" Hosts="@Hosts" CarClasses="@CarClasses" Server="@Server"
+                             @bind-SelectedRaceSimId="@SelectedRaceSimId"
+                             @bind-SelectedRaceSimId:after="RaceSimSelected">
+                    </Generic>
+                </div>
+                <div class="tab-pane fade" id="sessions">
+                    <Oversteer.BlazorComponents.Session.Sessions 
+                        SessionsSet="@Server.Sessions">
+                    </Oversteer.BlazorComponents.Session.Sessions>
+                </div>
+                <div class="tab-pane fade" id="acc">
+                    <Oversteer.BlazorComponents.ACC.ACC Acc="Server.ACC" IsChampionshipRace=false ShowWeatherSettings=false></Oversteer.BlazorComponents.ACC.ACC>
+                </div>
+            </div>
+
+            <ObjectGraphDataAnnotationsValidator />
+            <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+
+            <button type="submit" class="btn btn-primary">Create</button>
+
+        </EditForm>
+    </div>
+</div>

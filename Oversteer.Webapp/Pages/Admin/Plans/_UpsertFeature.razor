@@ -1,0 +1,59 @@
+﻿@using Oversteer.Models
+
+@if (ShowLoader)
+{
+    <div class="loader"></div>
+}
+
+@if (ShowDialog)
+{
+    <div class="modal fade show d-block" tabindex="0" role="dialog" style="z-index:11">
+        <div class="modal-dialog modal-dialog-scrollable modal-l" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h5 class="modal-title">
+                                @if (string.IsNullOrEmpty(Feature.Name))
+                                {
+                                    <text>Add new feature</text>
+                                }
+                                else
+                                {
+                                    <text>Edit @Feature.Name</text>
+                                }
+                            </h5>
+                        </div>
+                    </div>
+                    <button type="button" class="close" @onclick="@Close" data-dimdiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <EditForm Model="@Feature" OnValidSubmit="@HandleValidSubmit">
+
+                        <div class="form-group row">
+                            <label class="col-form-label">Name</label>
+                            <InputText id="comment" class="form-control" @bind-Value="@Feature.Name" placeholder="Enter a name"></InputText>
+                            <ValidationMessage For="@(() => Feature.Name)" />
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label">Description</label>
+                            <InputText id="comment" class="form-control" @bind-Value="@Feature.Description" placeholder="Enter a name"></InputText>
+                            <ValidationMessage For="@(() => Feature.Description)" />
+                        </div>
+
+                        <DataAnnotationsValidator />
+                        <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a class="btn btn-outline-primary" @onclick="@Close">Close</a>
+
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}

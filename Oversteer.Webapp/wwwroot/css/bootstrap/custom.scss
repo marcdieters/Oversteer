@@ -1,0 +1,27 @@
+﻿.table-hover {
+    cursor: pointer;
+
+    thead {
+        cursor: default;
+    }
+}
+
+/* summernote bootstrap plugin */
+.note-toolbar, .note-btn-group {
+    display: flex;
+}
+
+.text-decoration-underline {
+    text-decoration: underline;
+}
+
+.carousel-caption {
+    bottom: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: rgba(0,0,0,.5);
+}
+
+.list-group-item--highlight {
+    background-color: #EDEDED !important;
+}

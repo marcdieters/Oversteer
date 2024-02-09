@@ -1,0 +1,10 @@
+﻿@page "/upsertchampionship"
+@using Oversteer.Models
+
+@if (Loaded)
+{
+    <Oversteer.BlazorComponents.Championship.Upsert 
+        @bind-ChampionshipId="Id" 
+        @bind-ChampionshipId:after="ChampionshipSaved"
+        Token="@Token" />
+}

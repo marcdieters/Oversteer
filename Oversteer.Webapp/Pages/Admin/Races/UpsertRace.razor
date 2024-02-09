@@ -1,0 +1,9 @@
+﻿@page "/upsertrace"
+@using Oversteer.Models
+
+<Oversteer.BlazorComponents.Race.Upsert 
+    ChampionshipId="@ChampionshipId" 
+    @bind-RaceId="@RaceId" 
+    @bind-RaceId:after="@RaceSaved" 
+    Token="@Token" 
+    ShowWeatherSettings=true />

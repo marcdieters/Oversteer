@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using Oversteer.Models.Racing
+@using Oversteer.Extensions
+@using Oversteer.Enums
+
+<div class="row">
+    <div class="col-3">
+        <label class="col-form-label">Day of the week</label>
+        <InputSelect class="form-select" @bind-Value="Session.DayOfTheWeek">
+            @foreach (DayOfTheWeek day in Enum.GetValues(typeof(DayOfTheWeek)))
+            {
+                <option value="@day">@day.GetDisplayName()</option>
+            }
+        </InputSelect>
+    </div>
+
+    <div class="col-3">
+        <label class="col-form-label">Session type</label>
+        <InputSelect class="form-select" @bind-Value="Session.SessionType">
+            @foreach (SessionType type in Enum.GetValues(typeof(SessionType)))
+            {
+                <option value="@type">@type.GetDisplayName()</option>
+            }
+        </InputSelect>
+    </div>
+
+    <div class="col-3">
+        <label class="col-form-label">Hour</label>
+        <InputNumber id="comment" class="form-control" @bind-Value="@Session.Hour"></InputNumber>
+        <ValidationMessage For="@(() => @Session.Hour)" />
+    </div>
+
+    <div class="col-3">
+        <label class="col-form-label">Duration (minutes)</label>
+        <InputNumber id="comment" class="form-control" @bind-Value="@Session.DurationMinutes"></InputNumber>
+        <ValidationMessage For="@(() => @Session.DurationMinutes)" />
+    </div>
+
+</div>

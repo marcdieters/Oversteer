@@ -1,0 +1,486 @@
+﻿/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+body {
+    overflow-x: hidden;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+nav {
+    background-color: #3E6866;
+    border-color: #3E6866;
+}
+
+#logo {
+    width: 80%;
+}
+
+#navbarSupportedContent {
+    height: 80px;
+}
+
+.navbar {
+    padding: 0;
+    background-color: #3E6866;
+    border-color: #3E6866;    
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.sidebar-logo {
+    height: 80px;
+    background-color: #3E6866;
+    border-color: #3E6866;
+    width: 240px;
+}
+
+
+/*profile picture*/
+.profile {
+    width: 240px;
+    overflow-y: visible;
+    position: absolute;
+}
+
+.profile-bg, .profile-picture {
+    width: 240px;
+    height: 240px;
+    position: absolute;
+}
+
+.profile-bg {
+    overflow: hidden;
+}
+
+    .profile-bg img {
+        width: 250px;
+        height: 250px;
+        filter: blur(16px);
+        -webkit-filter: blur(16px);
+        margin: -5px;
+        border: 0;
+    }
+
+.profile-picture img.account-photo {
+    width: 160px;
+    height: 160px;
+    margin-left: 40px;
+    margin-top: 40px;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.menu {
+    position: absolute;
+    margin-top: 210px;
+}
+
+#sidebar-wrapper {
+    width: 240px;
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+}
+
+    #sidebar-wrapper .sidebar-heading {
+        padding: 0.875rem 1.25rem;
+        font-size: 1.2rem;
+    }
+
+    #sidebar-wrapper .list-group {
+        width: 15rem;
+    }
+
+.list-group-item.active, .list-group-item.active:active, .list-group-item.active:focus, .list-group-item.active:visited {
+    color: white;
+    background-color: #3E6866 !important;
+    border-color: #3E6866;
+    font-weight: bold;
+}
+
+.title {
+    color: white;
+    padding-left: 25px;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+.container-fluid {
+    padding: 25px;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+}
+
+.page-title {
+    color: #23cfa7;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+table#dataTable {
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+#dataTable tr {
+    background-color: #eee;
+    border-top: 1px solid #fff;
+}
+
+    #dataTable tr:hover {
+        background-color: #ccc;
+    }
+
+#dataTable th {
+    background-color: #fff;
+}
+
+#dataTable th, #dataTable td {
+    padding: 3px 5px;
+}
+
+    #dataTable td:hover {
+        cursor: pointer;
+    }
+
+table#issueDetails {
+    border-collapse: collapse;
+}
+
+.quick-add-btn {
+    font-size: 36px;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+}
+
+.employee-detail, .employee-edit, .entity-edit {
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+    .employee-detail .form-group {
+        margin-bottom: 0;
+    }
+
+.employee-detail-img {
+    width: 150px;
+    height: auto;
+}
+
+.track-order-map {
+    width: 350px;
+    height: 500px;
+    flex-shrink: 0;
+}
+
+.edit-btn {
+    background-color: #23cfa7;
+    border-color: #23cfa7;
+    color: #fff;
+}
+
+    .edit-btn:hover, .edit-btn:active {
+        color: #fff;
+        background-color: #3E6866;
+        border-color: #3E6866;
+    }
+
+.edit-outline-btn {
+    border-color: #23cfa7;
+}
+
+    .edit-outline-btn:hover, .edit-outline-btn:active {
+        color: #fff;
+        background-color: #3E6866 !important;
+        border-color: #3E6866 !important;
+    }
+
+
+.widget {
+    padding: 25px;
+    margin: 10px;
+    background: #fff;
+}
+
+    .widget h3 {
+        margin-left: 0px;
+    }
+
+    .widget img {
+        max-width: 100px;
+    }
+
+#sidebar-wrapper {
+    background: #3E6866 !important
+}
+
+.employee-box {
+    padding: 10px;
+}
+
+.img-responsive {
+    width: 100%;
+}
+
+.validation-errors {
+    list-style: none;
+    margin: 25px 0;
+    padding: 0;
+    color: red;
+}
+
+a.active {
+    font-weight: bold;
+}
+
+#sidebar {
+    color: #fff;
+    transition: all 0.3s;
+}
+
+    #sidebar.active {
+        margin-left: -250px;
+    }
+
+    #sidebar .sidebar-header {
+        padding: 20px;
+        background: #6d7fcc;
+    }
+
+    #sidebar ul.components {
+        padding: 20px 0;
+    }
+
+    #sidebar ul p {
+        color: #fff;
+        padding: 10px;
+    }
+
+    #sidebar ul li a {
+        padding: 10px;
+        font-size: 1.1em;
+        display: block;
+        color: #fff;
+    }
+
+        #sidebar ul li a:hover {
+            color: #7386D5;
+            text-decoration: none;
+            background: #fff;
+        }
+
+    #sidebar ul li.active > a,
+    a[aria-expanded="true"] {
+        color: #fff;
+    }
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+/*.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}*/
+
+#sidebar .sub-menu li a {
+    padding-left: 25px;
+}
+
+/*.dropdown-toggle {
+    cursor: pointer;
+}*/
+
+.sub-menu {
+    display: none;
+}
+
+#sidebar .toggle-hide {
+    display: none;
+}
+
+#sidebar .toggle-show {
+    display: block;
+}
+
+.btn-primary {
+    background-color: #50C1AE !important;
+    color: white !important;
+}
+
+    .btn-primary:hover {
+        background-color: #3E6866 !important;
+        color: white !important;
+    }
+
+.btn-outline-primary:hover {
+    background-color: #3E6866 !important;
+}
+
+.btn-link {
+    color: black;
+}
+
+a:link, a:visited {
+    color: black;
+}
+
+.btn-light {
+    background-color: white;
+}
+
+.spinner {
+    border: 16px solid silver;
+    border-top: 16px solid #337AB7;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 700ms linear infinite;
+    top: 30%;
+    left: 50%;
+    position: absolute;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 100;
+    }
+}
+
+.slide-from-right {
+    animation-duration: 0.6s; /* the duration of the animation */
+    animation-timing-function: ease-out; /* how the animation will behave */
+    animation-delay: 0s; /* how long to delay the animation from starting */
+    animation-iteration-count: 1; /* how many times the animation will play */
+    animation-name: slideInFromRight; /* the name of the animation we defined above */
+    animation-fill-mode: forwards;
+}
+
+@keyframes slideToRight {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.slide-to-right {
+    animation-duration: 0.6s; /* the duration of the animation */
+    animation-timing-function: ease-out; /* how the animation will behave */
+    animation-delay: 0s; /* how long to delay the animation from starting */
+    animation-iteration-count: 1; /* how many times the animation will play */
+    animation-name: slideToRight; /* the name of the animation we defined above */
+    animation-fill-mode: forwards;
+}
+
+@keyframes slideToLeft {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.slide-to-left {
+    animation-duration: 0.6s; /* the duration of the animation */
+    animation-timing-function: ease-out; /* how the animation will behave */
+    animation-delay: 0s; /* how long to delay the animation from starting */
+    animation-iteration-count: 1; /* how many times the animation will play */
+    animation-name: slideToLeft; /* the name of the animation we defined above */
+    animation-fill-mode: forwards;
+}
+
+@keyframes slideFromLeft {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.slide-from-left {
+    animation-duration: 0.6s; /* the duration of the animation */
+    animation-timing-function: ease-out; /* how the animation will behave */
+    animation-delay: 0s; /* how long to delay the animation from starting */
+    animation-iteration-count: 1; /* how many times the animation will play */
+    animation-name: slideFromLeft; /* the name of the animation we defined above */
+    animation-fill-mode: forwards;
+}
+
+.button_class {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: white;
+}
+
+.button_class_left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
+}
+
+#divhover:hover {
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+#tdhover:hover {
+    cursor: pointer;
+    color: white;
+}

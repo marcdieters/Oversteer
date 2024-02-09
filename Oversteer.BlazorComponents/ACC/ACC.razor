@@ -1,0 +1,200 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using Oversteer.Models
+@using Oversteer.Extensions
+
+<fieldset class="group-border">
+    <legend class="group-border">
+        Requirements
+    </legend>
+    <div class="form-group row">
+        <label class="col-form-label">Track rating</label>
+        <InputNumber id="comment" class="form-control" @bind-Value="@Acc.TrackRating" disabled="@IsChampionshipRace"></InputNumber>
+        <ValidationMessage For="@(() => Acc.TrackRating)" />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Safety rating</label>
+        <InputNumber id="comment" class="form-control" @bind-Value="@Acc.SafetyRating" disabled="@IsChampionshipRace"></InputNumber>
+        <ValidationMessage For="@(() => Acc.SafetyRating)" />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Racecraft rating</label>
+        <InputNumber id="comment" class="form-control" @bind-Value="@Acc.RaceCraftRating" disabled="@IsChampionshipRace"></InputNumber>
+        <ValidationMessage For="@(() => Acc.RaceCraftRating)" />
+    </div>
+</fieldset>
+
+<fieldset class="group-border">
+    <legend class="group-border">
+        Generic settings
+    </legend>
+    <div class="form-group row">
+        <InputSelect class="form-select" @bind-Value="Acc.FormationLapType">
+            @foreach (FormationLapType type in Enum.GetValues(typeof(FormationLapType)))
+            {
+                <option value="@type">@type.GetDisplayName()</option>
+            }
+        </InputSelect>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Safety rating</label>
+        <InputNumber id="comment" class="form-control" @bind-Value="@Acc.SafetyRating" disabled="@IsChampionshipRace"></InputNumber>
+        <ValidationMessage For="@(() => Acc.SafetyRating)" />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Racecraft rating</label>
+        <InputNumber id="comment" class="form-control" @bind-Value="@Acc.RaceCraftRating" disabled="@IsChampionshipRace"></InputNumber>
+        <ValidationMessage For="@(() => Acc.RaceCraftRating)" />
+    </div>
+</fieldset>
+
+@if (ShowWeatherSettings)
+{
+    <fieldset class="group-border">
+        <legend class="group-border">
+            Weather settings
+        </legend>
+        <div class="form-group row">
+            <label class="col-form-label">Ambient temperature</label>
+            <InputNumber id="comment" class="form-control" @bind-Value="@Acc.AmbientTemp"></InputNumber>
+            <ValidationMessage For="@(() => Acc.AmbientTemp)" />
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label">Cloud level</label>
+            <InputNumber id="comment" class="form-control" @bind-Value="@Acc.CloudLevel"></InputNumber>
+            <ValidationMessage For="@(() => Acc.CloudLevel)" />
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label">Rain</label>
+            <InputNumber id="comment" class="form-control" @bind-Value="@Acc.Rain"></InputNumber>
+            <ValidationMessage For="@(() => Acc.Rain)" />
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label">Weather randomness</label>
+            <InputNumber id="comment" class="form-control" @bind-Value="@Acc.WeatherRandomness"></InputNumber>
+            <ValidationMessage For="@(() => Acc.WeatherRandomness)" />
+        </div>
+
+    </fieldset>
+}
+
+<fieldset class="group-border">
+    <legend class="group-border">
+        Pitstop settings
+    </legend>
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Acc.RefuelAllowedDuringRace" disabled="@IsChampionshipRace" />
+            <label class="form-check-label" style="padding-left: 10px;">Refueling allowed during race</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Acc.RefuelTimeFixed" disabled="@IsChampionshipRace" />
+            <label class="form-check-label" style="padding-left: 10px;">Refueling timefixed</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Acc.MandatoryPitStopFuel" disabled="@IsChampionshipRace" />
+            <label class="form-check-label" style="padding-left: 10px;">Mandatory refueling during pitstop</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Acc.MandatoryPitStopTyres" disabled="@IsChampionshipRace" />
+            <label class="form-check-label" style="padding-left: 10px;">Mandatory tyre change during pitstop</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Acc.MandatoryPitStopDriverChange" disabled="@IsChampionshipRace" />
+            <label class="form-check-label" style="padding-left: 10px;">Mandatory driver change during pitstop</label>
+        </div>
+    </div>
+</fieldset>
+
+<fieldset class="group-border">
+    <legend class="group-border">
+        Assist rules
+    </legend>
+    <div class="form-group row">
+        <label class="col-form-label">Stability control level maximum</label>
+        <InputNumber id="comment" class="form-control" @bind-Value="@Acc.StabilityControlLevelMax" disabled="@IsChampionshipRace"></InputNumber>
+        <ValidationMessage For="@(() => Acc.StabilityControlLevelMax)" />
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Acc.DisableAutoSteer" disabled="@IsChampionshipRace" />
+            <label class="form-check-label" style="padding-left: 10px;">Disable auto steer</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Acc.DisableAutoLight" disabled="@IsChampionshipRace" />
+            <label class="form-check-label" style="padding-left: 10px;">Disable auto light</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Acc.DisableAutoWiper" disabled="@IsChampionshipRace" />
+            <label class="form-check-label" style="padding-left: 10px;">Disable auto wiper</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Acc.DisableAutoEngineStart" disabled="@IsChampionshipRace" />
+            <label class="form-check-label" style="padding-left: 10px;">Disable auto engine start</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Acc.DisableAutoEngineStart" disabled="@IsChampionshipRace" />
+            <label class="form-check-label" style="padding-left: 10px;">Disable auto engine start</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Acc.DisableAutoPitLimiter" disabled="@IsChampionshipRace" />
+            <label class="form-check-label" style="padding-left: 10px;">Disable auto pit limiter</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Acc.DisableAutoGear" disabled="@IsChampionshipRace" />
+            <label class="form-check-label" style="padding-left: 10px;">Diable auto gear</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Acc.DisableAutoClutch" disabled="@IsChampionshipRace" />
+            <label class="form-check-label" style="padding-left: 10px;">Disable auto clutch</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Acc.DisableIdealLie" disabled="@IsChampionshipRace" />
+            <label class="form-check-label" style="padding-left: 10px;">Disable ideal line</label>
+        </div>
+    </div>
+
+</fieldset>

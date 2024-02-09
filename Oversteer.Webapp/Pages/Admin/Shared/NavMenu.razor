@@ -1,0 +1,120 @@
+﻿<div class="bg-light" id="sidebar-wrapper">
+    <nav id="sidebar">
+        <ul class="list-unstyled components">
+            <li>
+                <NavLink class="nav-link" href="carsadmin" style="color:black">
+                    <iconify-icon icon="fxemoji:racecar"></iconify-icon>
+                    Cars
+                </NavLink>
+            </li>
+            <li>
+                <NavLink class="nav-link" href="carbrands" style="color:black">
+                    <iconify-icon icon="tabler:brand-carbon"></iconify-icon>
+                    Car brands
+                </NavLink>
+            </li>
+            <li>
+                <NavLink class="nav-link" href="carclasses" style="color:black">
+                    <iconify-icon icon="carbon:load-balancer-classic"></iconify-icon>
+                    Car classes
+                </NavLink>
+            </li>
+            <li>
+                <NavLink class="nav-link" href="championshipsadmin" style="color:black">
+                    <iconify-icon icon="maki:racetrack"></iconify-icon>
+                    Championships
+                </NavLink>
+            </li>
+            <li>
+                <NavLink class="nav-link" href="countries" style="color:black">
+                    <iconify-icon icon="gis:search-country"></iconify-icon>
+                    Countries
+                </NavLink>
+            </li>
+            <li>
+                <NavLink class="nav-link" href="dlcs" style="color:black">
+                    <iconify-icon icon="eos-icons:software"></iconify-icon>
+                    DLCs
+                </NavLink>
+            </li>
+            <li>
+                <NavLink class="nav-link" href="hosts" style="color:black">
+                    <iconify-icon icon="clarity:host-group-solid"></iconify-icon>
+                    Hosts
+                </NavLink>
+            </li>
+            <li>
+                <NavLink class="nav-link" href="leagues" style="color:black">
+                    <iconify-icon icon="arcticons:league"></iconify-icon>
+                    Leagues
+                </NavLink>
+            </li>
+            <li>
+                <NavLink class="nav-link" href="plans" style="color:black">
+                    <iconify-icon icon="fluent-mdl2:diet-plan-notebook"></iconify-icon>
+                    Plans
+                </NavLink>
+            </li>
+            <li>
+                <NavLink class="nav-link" href="platforms" style="color:black">
+                    <iconify-icon icon="ep:platform"></iconify-icon>
+                    Platforms
+                </NavLink>
+            </li>
+            <li>
+                <NavLink class="nav-link" href="trackadmin" style="color:black">
+                    <iconify-icon icon="akar-icons:game-controller"></iconify-icon>
+                    Race sims
+                </NavLink>
+            </li>
+            <li>
+                <NavLink class="nav-link" href="racesadmin" style="color:black">
+                    <iconify-icon icon="healthicons:paved-road"></iconify-icon>
+                    Races
+                </NavLink>
+            </li>
+            <li>
+                <NavLink class="nav-link" href="servers" style="color:black">
+                    <iconify-icon icon="carbon:bare-metal-server-01"></iconify-icon>
+                    Servers
+                </NavLink>
+            </li>
+            <li>
+                <NavLink class="nav-link" href="tracksadmin" style="color:black">
+                    <iconify-icon icon="maki:racetrack"></iconify-icon>
+                    Tracks
+                </NavLink>
+            </li>
+            <li>
+                <NavLink class="nav-link" href="users" style="color:black">
+                    <iconify-icon icon="ant-design:user-outlined"></iconify-icon>
+                    Users
+                </NavLink>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+@code{
+    public bool IsHidden1 { get; set; } = true;
+    public bool IsHidden2 { get; set; } = true;
+    public bool IsHidden3 { get; set; } = true;
+    public bool IsOwner { get; set; } = false;
+
+    public void ToggleNav1(int navId)
+    {
+        switch (navId)
+        {
+            case 1:
+                IsHidden1 = !IsHidden1;
+                break;
+            case 2:
+                IsHidden2 = !IsHidden2;
+                break;
+            case 3:
+                IsHidden3 = !IsHidden3;
+                break;
+        }
+
+    }
+}

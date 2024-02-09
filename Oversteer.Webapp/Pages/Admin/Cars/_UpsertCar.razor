@@ -1,0 +1,176 @@
+﻿@using Oversteer.Models
+
+@if (ShowLoader)
+{
+    <div class="loader"></div>
+}
+
+@if (ShowDialog)
+{
+    <div class="modal fade show d-block" tabindex="0" role="dialog" style="z-index:11">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        @if (string.IsNullOrEmpty(Car.Name))
+                        {
+                            <text>Add new car</text>
+                        }
+                        else
+                        {
+                            <text>Edit @Car.Name</text>
+                        }
+                    </h5>
+                    <button type="button" class="close" @onclick="@Close" data-dimdiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <EditForm Model="@Car" OnValidSubmit="@HandleValidSubmit">
+
+                            <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+                            <div class="form-group">
+                                <label class="col-form-label">Name</label>
+                                <InputText id="comment" class="form-control" @bind-Value="@Car.Name" placeholder="Enter a name"></InputText>
+                                <ValidationMessage For="@(() => Car.Name)" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label">Description</label>
+                                <InputText id="comment" class="form-control" @bind-Value="@Car.Description" placeholder="Enter a description (not required)"></InputText>
+                                <ValidationMessage For="@(() => Car.Description)" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label">Brand</label>
+                                <InputSelect class="form-select" @bind-Value="@Car.CarBrandId">
+                                    <option value="0" selected>--select--</option>
+                                    @foreach (var brand in CarBrands)
+                                    {
+                                        <option value="@brand.Id">@brand.Name</option>
+                                    }
+                                </InputSelect>
+                                <ValidationMessage For="@(() => Car.CarBrandId)" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label">Class</label>
+                                <InputSelect class="form-select" @bind-Value="@Car.CarClassId">
+                                    <option value="0" selected>--select--</option>
+                                    @foreach (var carclass in CarClasses)
+                                    {
+                                        <option value="@carclass.Id">@carclass.Name</option>
+                                    }
+                                </InputSelect>
+                                <ValidationMessage For="@(() => Car.CarBrandId)" />
+                            </div>
+
+@*                            <div class="form-group">
+                                <label class="col-form-label">Race sim</label>
+                                <div class="row">
+                                    <div class="col-md-5"> 
+                                        <select class="form-select" onchange="@OnSelect" size="5">
+                                            @foreach (var sim in AvailableRaceSims)
+                                            {
+                                                <option value="@sim.Id">@sim.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button @onclick="() => AddRow()" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+                                        <button @onclick="() => RemoveRow()" class="btn btn-primary"><i class="fa-solid fa-minus"></i></button>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <select class="form-select" onchange="@OnSelect" size="5">
+                                            @foreach (var sim in SelectedRaceSims)
+                                            {
+                                                <option value="@sim.Id">@sim.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>*@
+
+                            <div class="form-group">
+                                <label class="col-form-label">Content details</label>
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Race sim</th>
+                                            <th>Content type</th>
+                                            <th></th>
+                                            <th hidden="@HideAccEntries">Assetto Corsa Compitizione car id</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <InputRadioGroup @bind-Value="@SelectedCarInRaceSimId">
+                                            @foreach (var sim in CarInRaceSims)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <InputRadio Value="@SelectedCarInRaceSimId"></InputRadio>
+                                                    </td>
+                                                    <td>
+                                                        <InputSelect class="form-select" @bind-Value="@sim.RaceSimId" @bind-Value:after="() => RaceSimSelected(sim)">
+                                                            <option value="0" selected>--select--</option>
+                                                            @foreach (var sim in RaceSims)
+                                                        {
+                                                            <option value="@sim.Id">@sim.Name</option>
+                                                        }
+                                                    </InputSelect>
+                                                </td>
+                                                <td>
+                                                        @{
+                                                            var types = Enum.GetValues(typeof(ContentType)).Cast<ContentType>().ToList();
+                                                            types = types.OrderBy(l => l).ToList();
+                                                        }
+                                                        <InputSelect class="form-select" @bind-Value="@sim.ContentType" @bind-Value:after="() => ContentTypeSelected(sim)">
+                                                            @foreach (var type in types)
+                                                            {
+                                                                <option value="@type">@type</option>
+                                                            }
+                                                        </InputSelect>
+                                                </td>
+                                                <td>
+                                                    <InputSelect class="form-select" @bind-Value="@sim.DlcId" disabled="@sim.DisableDlc">
+                                                        <option value="0" selected>--select--</option>
+                                                        @foreach (var dlc in Dlcs)
+                                                        {
+                                                            <option value="@dlc.Id">@dlc.Name</option>
+                                                        }
+                                                    </InputSelect>
+                                                </td>
+                                                <td hidden="@HideAccEntries">
+                                                    <InputNumber class="form-select" @bind-Value="@sim.AccCarId"></InputNumber>
+                                                </td>
+                                                </tr>
+                                            }
+                                        </InputRadioGroup>
+                                    </tbody>
+                                </table>
+                                <a @onclick="() => AddRow()" class="btn btn-primary" style="color:white"><i class="fa-solid fa-plus"></i></a>
+                                <a @onclick="() => RemoveRow()" class="btn btn-primary" style="color:white"><i class="fa-solid fa-minus"></i></a>
+                                @CarInSimMessage
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label">Image</label>
+                                <InputFile OnChange="OnInputFileChange"></InputFile>
+                                <ValidationMessage For="@(() => SelectedFiles)" />
+                                @FileMessage
+                            </div>
+
+                            <DataAnnotationsValidator />
+
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <a class="btn btn-outline-primary" @onclick="@Close">Close</a>
+
+                        </EditForm>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}

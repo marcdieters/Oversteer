@@ -1,0 +1,7 @@
+﻿@page "/uploadresult"
+@using Oversteer.Models
+
+<Oversteer.BlazorComponents.Result.Upload 
+    @bind-RaceId="@RaceId"
+    @bind-RaceId:after="@ResultsUploaded"
+    Token="@Token"></Oversteer.BlazorComponents.Result.Upload>

@@ -1,0 +1,64 @@
+﻿@page "/dlcs"
+@layout Pages.Admin.Shared.AdminLayout
+@using BlazorTable
+@using Oversteer.Models
+
+@if(ShowLoader == true)
+{
+    <div class="loader"></div>
+}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="row clearfix">
+            <div class="col-sm-10">
+                <h4>DLCs</h4>
+            </div>
+            <div class="col-sm-2">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button @onclick="() => UpsertDlc(true)" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+                    <_UpsertDlc @ref="_UpsertDlc" CloseEventCallback="@UpsertDlcDialog_OnDialogClose"></_UpsertDlc>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 dataTable">
+                <Table TableItem="Dlc" Items="Dlcs" PageSize="10" RowClickAction="ShowOptions" ShowSearchBar="true">
+                    <Column TableItem="Dlc" Title="Name" Field="@(x => x.Name)" Sortable="true" Filterable="true" Width="10%" DefaultSortColumn="true" />
+                    <Column TableItem="Dlc" Title="Content type" Field="@(x => x.ContentType)" Sortable="true" Filterable="true" Width="20%" />
+                    <Column TableItem="Dlc" Title="Race sim" Field="@(x => x.RaceSim.Name)" Sortable="true" Filterable="true" Width="20%" />
+                    <Pager ShowPageNumber="true" ShowTotalCount="true" ShowPageSizes="true" AlwaysShow />
+                </Table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Total Countries: @Dlcs.Count</div>
+</div>
+
+
+@if (ShowDialog)
+{
+    <div class="modal fade show d-block" tabindex="-1" style="z-index:10">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@SelectedDlc.Name options</h5>
+                    <button type="button" class="close" @onclick="@Close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col" style="padding: 10px;">
+
+                        <button @onclick="() => UpsertDlc(false)" class="btn btn-link" style="color:black"> Edit</button><br />
+                        <button @onclick="() => RemoveCountry()" class="btn btn-link" style="color:black"> Remove</button><br />
+
+                    </div>
+                    <a class="btn btn-outline-primary" @onclick="@Close">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

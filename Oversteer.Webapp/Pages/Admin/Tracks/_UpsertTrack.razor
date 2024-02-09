@@ -1,0 +1,221 @@
+﻿@using Oversteer.Models
+
+@if (ShowLoader)
+{
+    <div class="loader"></div>
+}
+
+@if (ShowDialog)
+{
+    <div class="modal fade show d-block" tabindex="0" role="dialog" style="z-index:11">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        @if (string.IsNullOrEmpty(Track.Name))
+                        {
+                            <text>Add new Track</text>
+                        }
+                        else
+                        {
+                            <text>Edit @Track.Name</text>
+                        }
+                    </h5>
+                    <a type="button" class="close" @onclick="@Close" data-dimdiss="modal" aria-label="Close" >
+                        <span aria-hidden="true">&times;</span>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <EditForm Model="@Track" Context="formContext">
+
+                            <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+                            <div class="form-group">
+                                <label class="col-form-label">Name</label>
+                                <InputText class="form-control" @bind-Value="@Track.Name" placeholder="Enter a name"></InputText>
+                                <ValidationMessage For="@(() => Track.Name)" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label">Description</label>
+                                <InputText class="form-control" @bind-Value="@Track.Description" placeholder="Enter a description"></InputText>
+                                <ValidationMessage For="@(() => Track.Description)" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label">City</label>
+                                <InputText class="form-control" @bind-Value="@Track.City" placeholder="Enter a city"></InputText>
+                                <ValidationMessage For="@(() => Track.City)" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label">Country</label>
+                                <InputSelect class="form-select" @bind-Value="@Track.CountryId">
+                                    <option value="0" selected>--select--</option>
+                                    @foreach (var country in Countries)
+                                    {
+                                        <option value="@country.Id">@country.Name</option>
+                                    }
+                                </InputSelect>
+                                <ValidationMessage For="@(() => Track.CountryId)" />
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label">Scenery image</label>
+                                <InputFile OnChange="OnInputFileChange"></InputFile>
+                                <ValidationMessage For="@(() => SelectedFiles)" />
+                                @FileMessage
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label">Content details</label>
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Race sim</th>
+                                            <th>Content type</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var sim in TrackInRaceSims)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <input type="radio" value="@sim.FieldSelector" onchange="@OnSelect" />
+                                                </td>
+                                                <td>
+                                                    <InputSelect class="form-select" @bind-Value="@sim.RaceSimId">
+                                                        <option value="0" selected>--select--</option>
+                                                        @foreach (var sim in RaceSims)
+                                                        {
+                                                            <option value="@sim.Id">@sim.Name</option>
+                                                        }
+                                                    </InputSelect>
+                                                </td>
+                                                <td>
+                                                    @{
+                                                        var types = Enum.GetValues(typeof(ContentType)).Cast<ContentType>().ToList();
+                                                        types = types.OrderBy(l => l).ToList();
+                                                    }
+                                                    <InputSelect class="form-select" @bind-Value="@sim.ContentType" @oninput="@ShowOrHideDlcSelect">
+                                                        @foreach (var type in types)
+                                                        {
+                                                            <option value="@type">@type</option>
+                                                        }
+                                                    </InputSelect>
+                                                </td>
+                                                <td>
+                                                    <InputSelect class="form-select" @bind-Value="@sim.DlcId" disabled="@DisableDlcSelect">
+                                                        <option value="0" selected>--select--</option>
+                                                        @foreach (var dlc in Dlcs)
+                                                        {
+                                                            <option value="@dlc.Id">@dlc.Name</option>
+                                                        }
+                                                    </InputSelect>
+                                                </td>
+                                                <InputText class="form-control" @bind-Value="@sim.NameInGame" placeholder="Track name in game"></InputText>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <a @onclick="() => AddRow()" class="btn btn-primary" style="color:white"><i class="fa-solid fa-plus"></i></a>
+                                <a @onclick="() => RemoveRow()" class="btn btn-primary" style="color:white"><i class="fa-solid fa-minus"></i></a>
+                                @TrackInSimMessage
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label">Track layouts</label>
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Race sim</th>
+                                            <th>Name</th>
+                                            <th>Game name</th>
+                                            <th># of pitboxes</th>
+                                            <th># of server slots</th>
+                                            <th>Layout image</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var tracklayout in TrackLayouts)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <input type="radio" value="@tracklayout.FieldSelector" onchange="@OnSelectLayout" />
+                                                </td>
+                                                <td>
+                                                    <InputSelect class="form-select" @bind-Value="@tracklayout.RaceSimId">
+                                                        <option value="0" selected>--select--</option>
+                                                        @foreach (var sim in RaceSims)
+                                                        {
+                                                            <option value="@sim.Id">@sim.Name</option>
+                                                        }
+                                                    </InputSelect>
+                                                </td>
+                                                <td>
+                                                    <InputText class="form-control" @bind-Value="tracklayout.Name"></InputText>
+                                                </td>
+                                                <td>
+                                                    <InputText class="form-control" @bind-Value="tracklayout.GameName"></InputText>
+                                                </td>
+                                                <td>
+                                                    <InputNumber class="form-control" @bind-Value="tracklayout.Pitboxes"></InputNumber>
+                                                </td>
+                                                <td>
+                                                    <InputNumber class="form-control" @bind-Value="tracklayout.PrivateServerSlots"></InputNumber>
+                                                </td>
+                                                <td>
+                                                    <InputFile OnChange="@((InputFileChangeEventArgs args) => OnInputLayoutChange(args, tracklayout.FieldSelector.ToString()))"></InputFile>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <a @onclick="() => AddLayoutRow()" class="btn btn-primary" style="color:white"><i class="fa-solid fa-plus"></i></a>
+                                <a @onclick="() => RemoveLayoutRow()" class="btn btn-primary" style="color:white"><i class="fa-solid fa-minus"></i></a>
+                                @TrackInSimMessage
+                            </div>
+
+                            <DataAnnotationsValidator />
+
+                            <a type="submit" class="btn btn-primary" @onclick="@(() => SaveTrack(formContext))" style="color:white">Save</a>
+                            <a class="btn btn-outline-primary" @onclick="@Close" style="color:white">Close</a>
+
+                        </EditForm>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    void OnSelect(ChangeEventArgs e)
+    {
+        string selectedString = e.Value.ToString();
+        SelectedRaceSimId = Guid.Parse((selectedString));
+    }
+
+    void OnSelectLayout(ChangeEventArgs e)
+    {
+        string selectedString = e.Value.ToString();
+        SelectedTrackLayoutId = Guid.Parse(selectedString);
+    }
+
+    void ShowOrHideDlcSelect(ChangeEventArgs e)
+    {
+        string selectedString = e.Value.ToString();
+
+        if (selectedString != "Base")
+        {
+            DisableDlcSelect = false;
+        }
+        else
+        {
+            DisableDlcSelect = true;
+        }
+    }
+}

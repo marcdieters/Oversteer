@@ -1,0 +1,73 @@
+﻿@page "/championshipsadmin"
+@using Oversteer.Models.Racing
+
+@layout Pages.Admin.Shared.AdminLayout
+@using BlazorTable
+
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="row clearfix">
+            <div class="col-sm-10">
+                <h4>Championships</h4>
+            </div>
+            <div class="col-sm-2">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button @onclick="() => Upsert(true)" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+
+            @if (ShowLoader == true)
+            {
+                <p class="placeholder-glow">
+                    <span class="placeholder col-12"></span>
+                    <span class="placeholder col-12"></span>
+                </p>
+            }
+            else
+            {
+                <div class="col-md-12 dataTable">
+                    <Table TableItem="Championship" Items="Championships" PageSize="10" RowClickAction="OpenRow" MoreOptionsClickAction="ShowOptions" ShowSearchBar="true">
+                        <Column TableItem="Championship" Title="Name" Field="@(x => x.Name)" Sortable="true" Filterable="true" Width="10%" DefaultSortColumn="true" />
+                        <Column TableItem="Championship" Title="Racesim" Field="@(x => x.RaceSim.Name)" Sortable="true" Filterable="true" Width="10%" />
+                        <Column TableItem="Championship" Title="# races" Field="@(x => x.Races.Count)" Sortable="true" Filterable="true" Width="10%" />
+                        <Column TableItem="Championship" Field="@(x => x.Id)" ShowMoreOptionsButton=true Sortable="true" Filterable="true" Width="2%" />
+                        <Pager ShowPageNumber="true" ShowTotalCount="true" ShowPageSizes="true" AlwaysShow />
+                    </Table>
+                </div>
+            }
+
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Total championships: @Championships.Count</div>
+</div>
+
+
+@if (ShowDialog)
+{
+    <div class="modal fade show d-block" tabindex="-1" style="z-index:10">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@SelectedChampionship.Name options</h5>
+                    <button type="button" class="close" @onclick="() => ShowDialog = false" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col" style="padding: 10px;">
+
+                        <button @onclick="() => AddRace()" class="btn btn-link" style="color:black"> Add race</button><br />
+                        <button @onclick="() => Upsert(false)" class="btn btn-link" style="color:black"> Edit</button><br />
+                        <button @onclick="() => Remove()" class="btn btn-link" style="color:black"> Remove</button><br />
+
+                    </div>
+                    <a class="btn btn-outline-primary" @onclick="() => ShowDialog = false">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

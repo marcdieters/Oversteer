@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+<AuthorizeView>
+    <Authorized>
+        <li class="dropdown">
+            <a href="#"><span><i class="fa fa-users" aria-hidden="true"></i></span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="Identity" href="/Account/Manage/Index" title="Manage">Manage Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="form-inline" asp-area="Identity" href="/Account/Logout">Logout</a>
+                </li>
+            </ul>
+        </li>
+    </Authorized>
+    <NotAuthorized>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login / Register</a>
+        </li>
+    </NotAuthorized>
+</AuthorizeView>

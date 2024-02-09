@@ -1,0 +1,71 @@
+﻿@page "/countries"
+@layout Pages.Admin.Shared.AdminLayout
+@using BlazorTable
+@using Oversteer.Models
+
+@if(ShowLoader == true)
+{
+    <div class="loader"></div>
+}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="row clearfix">
+            <div class="col-sm-10">
+                <h4>Countries</h4>
+            </div>
+            <div class="col-sm-2">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button @onclick="() => UpsertCountry(true)" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+                    <_UpsertCountry @ref="_UpsertCountry" CloseEventCallback="@UpsertCountryDialog_OnDialogClose"></_UpsertCountry>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 dataTable">
+                <Table TableItem="Country" Items="Countries" PageSize="10" RowClickAction="ShowOptions" ShowSearchBar="true">
+                    <Column TableItem="Country" Title="Name" Field="@(x => x.Name)" Sortable="true" Filterable="true" Width="10%" DefaultSortColumn="true" />
+                    <Column TableItem="Country" Title="Flag name" Field="@(x => x.ImageName)" Sortable="true" Filterable="true" Width="20%" />
+                    <Column TableItem="Country" Title="GMT Offset" Field="@(x => x.GMTOffset)" Sortable="true" Filterable="true" Width="20%" />
+                    <Column TableItem="Country" Title="" Field="@(x => x.Name)" Sortable="false" Filterable="false" Width="10%">
+                        <Template>
+                            <a class="btn btn-primary" @onclick="Test">
+                                <span class="fas fa-ellipsis-v"></span>
+                            </a>
+                        </Template>
+                    </Column>
+                    <Pager ShowPageNumber="true" ShowTotalCount="true" ShowPageSizes="true" AlwaysShow />
+                </Table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Total Countries: @Countries.Count</div>
+</div>
+
+
+@if (ShowDialog)
+{
+    <div class="modal fade show d-block" tabindex="-1" style="z-index:10">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@SelectedCountry.Name options</h5>
+                    <button type="button" class="close" @onclick="@Close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col" style="padding: 10px;">
+
+                        <button @onclick="() => UpsertCountry(false)" class="btn btn-link" style="color:black"> Edit</button><br />
+                        <button @onclick="() => RemoveCountry()" class="btn btn-link" style="color:black"> Remove</button><br />
+
+                    </div>
+                    <a class="btn btn-outline-primary" @onclick="@Close">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

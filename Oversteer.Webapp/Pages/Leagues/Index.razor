@@ -1,0 +1,43 @@
+﻿@page "/leagues"
+@using BlazorTable
+@using Oversteer.Models
+
+@if (ShowLoader == true)
+{
+    <div class="loader"></div>
+}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="row clearfix">
+            <div class="col-sm-10">
+                <h4>Leagues</h4>
+            </div>
+            <div class="col-sm-2">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <input type="text" class="form-control" placeholder="Find a league" onchange="@Filter"/>
+                    <button @onclick="() => UpsertLeagueRegistration(true)" class="btn btn-primary"><i class="fa-solid fa-plus" /></button>
+                    <_LeagueRegistration @ref="_LeagueRegistration"></_LeagueRegistration>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 dataTable">
+
+            </div>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Total leagues: @Leagues.Count</div>
+</div>
+
+
+@{
+    void Filter(ChangeEventArgs e)
+    {
+        string selectedString = e.Value.ToString();
+        Leagues = UnfilteredLeagues.Where(l => l.Name.ToLower().Contains(selectedString)).ToList();
+
+    }
+}

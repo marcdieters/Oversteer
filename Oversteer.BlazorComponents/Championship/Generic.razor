@@ -1,0 +1,115 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+
+<fieldset class="group-border">
+    <legend class="group-border">
+        Details
+    </legend>
+    <div class="form-group row">
+        <label class="col-form-label">Name</label>
+        <InputText id="comment" class="form-control" @bind-Value="@Championship.Name" placeholder="Enter a name"></InputText>
+        <ValidationMessage For="@(() => Championship.Name)" />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Banner image</label>
+        <InputText id="comment" class="form-control" @bind-Value="@Championship.BannerImage" placeholder="Enter a banner image"></InputText>
+        <ValidationMessage For="@(() => Championship.BannerImage)" />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Race sim</label>
+        <InputSelect class="form-select" @bind-Value="SelectedRaceSimId" @bind-Value:after="RaceSimSelected">
+            <option value="">Please select a race sim</option>
+            @foreach (var sim in RaceSims)
+            {
+                <option value="@sim.Id">@sim.Name</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => Championship.RaceSimId)" />
+    </div>
+</fieldset>
+
+<fieldset class="group-border">
+    <legend class="group-border">
+        Registrations
+    </legend>
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Championship.SingleDriver" />
+            <label class="form-check-label" style="padding-left: 10px;">Single driver</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Championship.AllowRegistrations" />
+            <label class="form-check-label" style="padding-left: 10px;">Allow registrations</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Championship.AllowRegistrationAfterEventStart" />
+            <label class="form-check-label" style="padding-left: 10px;">Allow registrations after championship started</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Championship.AllowWildCardRegistration" />
+            <label class="form-check-label" style="padding-left: 10px;">Allow wildcard registrations</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Championship.PrivateChampionship" />
+            <label class="form-check-label" style="padding-left: 10px;">Private championship</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-check form-switch">
+            <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Championship.FollowersOnly" />
+            <label class="form-check-label" style="padding-left: 10px;">Followers only</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Maximum allowed reserves</label>
+        <InputNumber id="comment" class="form-control" @bind-Value="@Championship.MaxReservesAllowed"></InputNumber>
+        <ValidationMessage For="@(() => Championship.MaxReservesAllowed)" />
+    </div>
+
+</fieldset>
+
+<fieldset class="group-border">
+    <legend class="group-border">
+        Driver settings
+    </legend>
+
+    <div class="form-group row">
+        <label class="col-form-label">Minimum number of drivers</label>
+        <InputNumber id="comment" class="form-control" @bind-Value="@Championship.MinNrOfDrivers" disabled="@Championship.SingleDriver"></InputNumber>
+        <ValidationMessage For="@(() => Championship.MinNrOfDrivers)" />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Maximum number of drivers</label>
+        <InputNumber id="comment" class="form-control" @bind-Value="@Championship.MaxNrOfDrivers" disabled="@Championship.SingleDriver"></InputNumber>
+        <ValidationMessage For="@(() => Championship.MaxNrOfDrivers)" />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Missed races penanlty points</label>
+        <InputNumber id="comment" class="form-control" @bind-Value="@Championship.MissedRacePenaltyPoints"></InputNumber>
+        <ValidationMessage For="@(() => Championship.MissedRacePenaltyPoints)" />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">Maximum penalty points</label>
+        <InputNumber id="comment" class="form-control" @bind-Value="@Championship.MaxPenaltyPoints"></InputNumber>
+        <ValidationMessage For="@(() => Championship.MaxPenaltyPoints)" />
+    </div>
+
+</fieldset>

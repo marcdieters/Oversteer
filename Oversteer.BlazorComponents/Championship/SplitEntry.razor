@@ -1,0 +1,79 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+
+<div class="row">
+    <div class="col-4">
+        <div class="form-group row">
+            <label class="col-form-label">Split name</label>
+            <InputText id="comment" class="form-control" @bind-Value="@Split.Name" placeholder="Enter a split name"></InputText>
+            <ValidationMessage For="@(() => Split.Name)" />
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="form-group row">
+            <label class="col-form-label">Select a class</label>
+            <InputSelect class="form-select" @bind-Value="@Split.CarClassId">
+                <option value="00000000-0000-0000-0000-000000000000" selected>--select--</option>
+                @foreach (var carClass in CarClasses)
+                {
+                    <option value="@carClass.Id">@carClass.Name</option>
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => Split.CarClassId)" />
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="form-group row">
+            <label class="col-form-label">Display name</label>
+            <InputText id="comment" class="form-control" @bind-Value="@Split.DisplayName" placeholder="Enter a split name"></InputText>
+            <ValidationMessage For="@(() => Split.Name)" />
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-4">
+        <div class="form-group row">
+            <label class="col-form-label">Capacity</label>
+            <InputNumber id="comment" class="form-control" @bind-Value="@Split.Capacity" placeholder="Enter a split name"></InputNumber>
+            <ValidationMessage For="@(() => Split.Capacity)" />
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="form-group row">
+            <label class="col-form-label">Open</label>
+            <div class="form-check form-switch">
+                <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@Split.Open" />
+                <label class="form-check-label" style="padding-left: 10px;"></label>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-4">
+        <div class="form-group row">
+            <label class="col-form-label">Select cars</label>
+            <a class="btn btn-primary" type="button" @onclick="GetCars" style="color:white">
+                Select cars
+            </a>
+        </div>
+    </div>
+</div>
+@if (ShowSelectCars)
+{
+    <div class="row">
+        <div class="card card-body">
+            @foreach (var car in Cars)
+            {
+                <div class="col-4">
+                    <div class="form-check form-switch">
+                        <InputCheckbox class="form-check-input" style="transform: scale(1.2);" type="checkbox" role="switch" @bind-Value="@car.Selected" @bind-Value:after="CarSelected" />
+                        <label class="form-check-label" style="padding-left: 10px;">@car.Name</label>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
